@@ -40,7 +40,7 @@ class _SplashViewBoodyState extends State<SplashViewBoody>
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       backgroundColor: mainColor,
-      duration: 10000000,
+      duration: 3000,
       nextScreen: HomeScreen(),
       centered: true,
       splashIconSize: 300,
