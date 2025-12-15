@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'Islamic',
+            'Bookly',
             style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
           ),
           Spacer(),
