@@ -33,6 +33,7 @@ dependencies:
   flutter:
     sdk: flutter
   font_awesome_flutter: ^10.12.0
+  google_fonts: ^6.3.3
   lottie: ^3.3.2
 
 dev_dependencies:
@@ -62,11 +63,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: GT Sectra Fine
+      fonts:
+        - asset: assets/fonts/GT-Sectra-Fine-Regular.ttf
+     
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
