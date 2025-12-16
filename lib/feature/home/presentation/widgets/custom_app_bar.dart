@@ -12,9 +12,12 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Text(
             'Bookly',
+
             style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
           ),
+
           Spacer(),
+
           Icon(FontAwesomeIcons.magnifyingGlass, size: 22),
         ],
       ),
