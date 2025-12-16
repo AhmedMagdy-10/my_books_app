@@ -1,5 +1,6 @@
 import 'package:books_app/core/utils/styles.dart';
 import 'package:books_app/feature/home/presentation/widgets/book_datails_image.dart';
+import 'package:books_app/feature/home/presentation/widgets/custom_book_details_title.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_books_datails_rating_and_category.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_list_view_books_items.dart';
 import 'package:flutter/material.dart';
@@ -129,30 +130,6 @@ class CustomBookDescription extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CustomBooksTitle extends StatelessWidget {
-  const CustomBooksTitle({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Text(
-        'Harry Potter and the Goblet of Fire Fire  ',
-        textAlign: TextAlign.center,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-
-        style: Styles.textStyle20.copyWith(
-          fontFamily: 'GT Sectra Fine',
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87,
-        ),
       ),
     );
   }
