@@ -3,7 +3,6 @@ import 'package:books_app/core/utils/constants.dart';
 import 'package:books_app/core/utils/functions.dart';
 import 'package:books_app/feature/home/data/models/book_model/book_model.dart';
 import 'package:books_app/feature/home/domain/entities/book_entity.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks();
