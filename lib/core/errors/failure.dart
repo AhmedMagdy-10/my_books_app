@@ -1,1 +1,3 @@
-class Failure {}
+abstract class Failure {}
+
+class ServerFailure extends Failure {}
