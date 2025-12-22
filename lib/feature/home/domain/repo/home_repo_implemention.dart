@@ -4,6 +4,7 @@ import 'package:books_app/feature/home/data/data_source/home_remote_data_source.
 import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 import 'package:books_app/feature/home/domain/repo/home_repo.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 class HomeRepoImpl extends HomeRepo {
   final HomeLocalDataSource homeLocalDataSource;
@@ -24,7 +25,11 @@ class HomeRepoImpl extends HomeRepo {
 
       return right(books);
     } catch (e) {
-      return left(ServerFailure());
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
     }
   }
 
@@ -39,7 +44,11 @@ class HomeRepoImpl extends HomeRepo {
 
       return right(books);
     } catch (e) {
-      return left(ServerFailure());
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
     }
   }
 }
