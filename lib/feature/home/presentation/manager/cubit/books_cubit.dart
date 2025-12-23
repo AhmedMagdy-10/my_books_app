@@ -1,6 +1,6 @@
 import 'package:books_app/feature/home/domain/UseCase/get_main_books_use_case.dart';
 import 'package:books_app/feature/home/domain/UseCase/get_newest_books_use_case.dart';
-import 'package:books_app/feature/presentation/manager/cubit/books_cubit_states.dart';
+import 'package:books_app/feature/home/presentation/manager/cubit/books_cubit_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BooksCubit extends Cubit<BooksCubitStates> {

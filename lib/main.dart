@@ -5,8 +5,8 @@ import 'package:books_app/feature/home/domain/UseCase/get_main_books_use_case.da
 import 'package:books_app/feature/home/domain/UseCase/get_newest_books_use_case.dart';
 import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 import 'package:books_app/feature/home/domain/repo/home_repo_implemention.dart';
-import 'package:books_app/feature/presentation/manager/cubit/books_cubit.dart';
-import 'package:books_app/feature/presentation/splash_view.dart';
+import 'package:books_app/feature/home/presentation/manager/cubit/books_cubit.dart';
+import 'package:books_app/feature/splashView/presentation/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
