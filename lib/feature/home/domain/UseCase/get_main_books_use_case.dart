@@ -4,17 +4,17 @@ import 'package:books_app/feature/home/domain/entities/book_entity.dart'
 import 'package:books_app/feature/home/domain/repo/home_repo.dart';
 import 'package:dartz/dartz.dart';
 
-class GetMainBooksUseCase extends UseCase<List<BookEntity>, void> {
+class GetMainBooksUseCase extends UseCase<List<BookEntity>> {
   final HomeRepo homeRepo;
 
   GetMainBooksUseCase({required this.homeRepo});
 
   @override
-  Future<Either<Failure, List<BookEntity>>> call(void params) {
+  Future<Either<Failure, List<BookEntity>>> call() {
     return homeRepo.fetchFeaturedBooks();
   }
 }
 
-abstract class UseCase<Type, Params> {
-  Future<Either<Failure, Type>> call(Params params);
+abstract class UseCase<type> {
+  Future<Either<Failure, type>> call();
 }
