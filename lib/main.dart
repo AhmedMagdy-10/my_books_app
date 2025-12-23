@@ -1,5 +1,6 @@
 import 'package:books_app/core/utils/constants.dart';
 import 'package:books_app/core/utils/get_it.dart';
+import 'package:books_app/core/utils/simple_bloc_observer.dart';
 import 'package:books_app/feature/home/domain/UseCase/get_main_books_use_case.dart';
 import 'package:books_app/feature/home/domain/UseCase/get_newest_books_use_case.dart';
 import 'package:books_app/feature/home/domain/entities/book_entity.dart';
@@ -17,6 +18,8 @@ void main() async {
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox(boxName);
   await Hive.openBox(newestBookBox);
+
+  Bloc.observer = SimpleBlocObserver();
 }
 
 class MyApp extends StatelessWidget {
