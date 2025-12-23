@@ -12,7 +12,7 @@ class BestSellerListViewItem extends StatelessWidget {
       height: 130,
       child: Row(
         children: [
-          ListViewBookItem(),
+          ListViewBookItem(image: ''),
           SizedBox(width: 30),
           Expanded(
             child: Column(

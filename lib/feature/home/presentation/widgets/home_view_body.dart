@@ -1,7 +1,7 @@
 import 'package:books_app/core/utils/styles.dart';
+import 'package:books_app/feature/home/presentation/widgets/book_list_view_bloc_builder.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_app_bar.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_best_seller_list_view.dart';
-import 'package:books_app/feature/home/presentation/widgets/custom_list_view_books_items.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -20,7 +20,8 @@ class HomeViewBody extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: CustomAppBar(),
                 ),
-                CustomListViewBooksItems(listHeight: 0.3),
+                BooksListViewBlocBuilder(),
+
                 SizedBox(height: 16),
 
                 Padding(

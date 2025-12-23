@@ -1,12 +1,19 @@
+import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 import 'package:books_app/feature/home/presentation/widgets/books_details_bottom_sheet_view.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class CustomListViewBooksItems extends StatelessWidget {
-  const CustomListViewBooksItems({super.key, required this.listHeight});
+  const CustomListViewBooksItems({
+    super.key,
+    required this.listHeight,
+    required this.books,
+  });
 
   final double listHeight;
+  final List<BookEntity> books;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -16,7 +23,7 @@ class CustomListViewBooksItems extends StatelessWidget {
         separatorBuilder: (context, index) =>
             SizedBox(width: MediaQuery.of(context).size.width * 0.04),
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: books.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
@@ -34,7 +41,7 @@ class CustomListViewBooksItems extends StatelessWidget {
                 builder: (context) => BooksDetailsBottomSheetView(),
               );
             },
-            child: ListViewBookItem(),
+            child: ListViewBookItem(image: books[index].image ?? ''),
           );
         },
       ),

@@ -39,7 +39,7 @@ class BooksDetailsBottomSheetView extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: CustomListViewBooksItems(listHeight: 0.2),
+              child: CustomListViewBooksItems(listHeight: 0.2, books: []),
             ),
           ],
         ),

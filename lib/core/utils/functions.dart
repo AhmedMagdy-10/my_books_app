@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
 
 void savedLocalData(List<BookEntity> books, String booksName) {
-  var box = Hive.box(boxName);
+  var box = Hive.box<BookEntity>(boxName);
   box.addAll(books);
 }
 

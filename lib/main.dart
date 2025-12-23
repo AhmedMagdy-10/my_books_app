@@ -16,26 +16,29 @@ void main() async {
   runApp(const MyApp());
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(boxName);
-  await Hive.openBox(newestBookBox);
-
+  await Hive.openBox<BookEntity>(boxName);
+  await Hive.openBox<BookEntity>(newestBookBox);
   Bloc.observer = SimpleBlocObserver();
+  setupServiceLocator();
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BooksCubit(
-        getMainBooksUseCase: GetMainBooksUseCase(
-          homeRepo: getIt.get<HomeRepoImpl>(),
-        ),
+    return BlocProvider<BooksCubit>(
+      create: (context) =>
+          BooksCubit(
+              getMainBooksUseCase: GetMainBooksUseCase(
+                homeRepo: getIt.get<HomeRepoImpl>(),
+              ),
 
-        getNewestBooksUseCase: GetNewestBooksUseCase(
-          homeRepo: getIt.get<HomeRepoImpl>(),
-        ),
-      ),
+              getNewestBooksUseCase: GetNewestBooksUseCase(
+                homeRepo: getIt.get<HomeRepoImpl>(),
+              ),
+            )
+            ..getMainBooks()
+            ..getNewestBooks(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
