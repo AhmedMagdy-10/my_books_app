@@ -1,10 +1,8 @@
 import 'package:books_app/core/utils/constants.dart';
-import 'package:books_app/feature/home/data/data_source/home_local_data_source.dart';
-import 'package:books_app/feature/home/data/data_source/home_remote_data_source.dart';
+import 'package:books_app/core/utils/get_it.dart';
 import 'package:books_app/feature/home/domain/UseCase/get_main_books_use_case.dart';
 import 'package:books_app/feature/home/domain/UseCase/get_newest_books_use_case.dart';
 import 'package:books_app/feature/home/domain/entities/book_entity.dart';
-import 'package:books_app/feature/home/domain/repo/home_repo.dart';
 import 'package:books_app/feature/home/domain/repo/home_repo_implemention.dart';
 import 'package:books_app/feature/presentation/manager/cubit/books_cubit.dart';
 import 'package:books_app/feature/presentation/splash_view.dart';
@@ -28,17 +26,11 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => BooksCubit(
         getMainBooksUseCase: GetMainBooksUseCase(
-          homeRepo: HomeRepoImpl(
-            homeLocalDataSource: HomeLocalDataSourceImpl(),
-            homeRemoteDataSource: HomeRemoteDataSourceImpl(),
-          ),
+          homeRepo: getIt.get<HomeRepoImpl>(),
         ),
 
         getNewestBooksUseCase: GetNewestBooksUseCase(
-          homeRepo: HomeRepoImpl(
-            homeLocalDataSource: HomeLocalDataSourceImpl(),
-            homeRemoteDataSource: HomeRemoteDataSourceImpl(),
-          ),
+          homeRepo: getIt.get<HomeRepoImpl>(),
         ),
       ),
       child: MaterialApp(
