@@ -5,16 +5,17 @@ import 'package:books_app/feature/home/data/models/book_model/book_model.dart';
 import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<BookEntity>> fetchFeaturedBooks();
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNamber = 0});
   Future<List<BookEntity>> fetchNewBooks();
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() async {
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNamber = 0}) async {
     var data = await ApiServices().getData(
-      endpoint: 'Filtering=free-ebooks&q=all',
+      endpoint: 'Filtering=free-ebooks&q=all&startIndex=${pageNamber * 10}',
     );
+
     List<BookEntity> books = [];
     for (var item in data['items']) {
       books.add(BookModel.fromJson(item));

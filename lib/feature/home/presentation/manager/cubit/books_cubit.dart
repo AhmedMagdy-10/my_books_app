@@ -11,9 +11,9 @@ class BooksCubit extends Cubit<BooksCubitStates> {
 
   final GetMainBooksUseCase getMainBooksUseCase;
   final GetNewestBooksUseCase getNewestBooksUseCase;
-  Future<void> getMainBooks() async {
+  Future<void> getMainBooks({int pageNamber = 0}) async {
     emit(BooksLoadingState());
-    var results = await getMainBooksUseCase.call();
+    var results = await getMainBooksUseCase.call(pageNamber);
     results.fold(
       ((failure) =>
           emit(BooksFailureState(errorMassege: failure.errorMessage))),
@@ -23,7 +23,7 @@ class BooksCubit extends Cubit<BooksCubitStates> {
 
   Future<void> getNewestBooks() async {
     emit(BooksLoadingState());
-    var results = await getNewestBooksUseCase.call();
+    var results = await getNewestBooksUseCase.call(0);
     results.fold(
       ((failure) =>
           emit(BooksFailureState(errorMassege: failure.errorMessage))),

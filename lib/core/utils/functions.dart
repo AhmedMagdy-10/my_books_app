@@ -9,6 +9,6 @@ void savedLocalData(List<BookEntity> books, String booksName) {
   box.addAll(books);
 }
 
-abstract class UseCase<type> {
-  Future<Either<Failure, type>> call();
+abstract class UseCase<type, parmater> {
+  Future<Either<Failure, type>> call(int parmater);
 }
