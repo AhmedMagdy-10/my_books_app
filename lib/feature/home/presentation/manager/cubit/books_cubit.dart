@@ -12,13 +12,20 @@ class BooksCubit extends Cubit<BooksCubitStates> {
   final GetMainBooksUseCase getMainBooksUseCase;
   final GetNewestBooksUseCase getNewestBooksUseCase;
   Future<void> getMainBooks({int pageNamber = 0}) async {
-    emit(BooksLoadingState());
+    if (pageNamber == 0) {
+      emit(BooksLoadingState());
+    } else {
+      emit(BooksPaginationLoadingState());
+    }
+
     var results = await getMainBooksUseCase.call(pageNamber);
-    results.fold(
-      ((failure) =>
-          emit(BooksFailureState(errorMassege: failure.errorMessage))),
-      ((books) => emit(BooksSuccessState(books: books))),
-    );
+    results.fold(((failure) {
+      if (pageNamber == 0) {
+        emit(BooksFailureState(errorMassege: failure.errorMessage));
+      } else {
+        emit(BooksPaginationFailureState(errorMassege: failure.errorMessage));
+      }
+    }), ((books) => emit(BooksSuccessState(books: books))));
   }
 
   Future<void> getNewestBooks() async {

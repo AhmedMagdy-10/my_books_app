@@ -14,6 +14,7 @@ class HomeRepoImpl extends HomeRepo {
     required this.homeLocalDataSource,
     required this.homeRemoteDataSource,
   });
+
   @override
   Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks({
     int pageNamber = 0,

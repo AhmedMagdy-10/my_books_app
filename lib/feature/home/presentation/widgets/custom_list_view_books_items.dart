@@ -24,6 +24,8 @@ class CustomListViewBooksItems extends StatefulWidget {
 class _CustomListViewBooksItemsState extends State<CustomListViewBooksItems> {
   final ScrollController scrollController = ScrollController();
 
+  bool isLoading = false;
+  int nextPage = 1;
   @override
   void initState() {
     super.initState();
@@ -31,11 +33,17 @@ class _CustomListViewBooksItemsState extends State<CustomListViewBooksItems> {
     scrollController.addListener(scrollListener);
   }
 
-  void scrollListener() {
+  void scrollListener() async {
     var currentPositions = scrollController.position.pixels;
     var maxScrollLength = scrollController.position.maxScrollExtent;
     if (currentPositions >= 0.7 * maxScrollLength) {
-      BlocProvider.of<BooksCubit>(context).getMainBooksUseCase();
+      if (!isLoading) {
+        isLoading = true;
+        await BlocProvider.of<BooksCubit>(
+          context,
+        ).getMainBooks(pageNamber: nextPage++);
+        isLoading = false;
+      }
     }
   }
 

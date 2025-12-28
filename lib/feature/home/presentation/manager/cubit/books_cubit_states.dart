@@ -6,6 +6,14 @@ class BooksInitialState extends BooksCubitStates {}
 
 class BooksLoadingState extends BooksCubitStates {}
 
+class BooksPaginationLoadingState extends BooksCubitStates {}
+
+class BooksPaginationFailureState extends BooksCubitStates {
+  final String errorMassege;
+
+  BooksPaginationFailureState({required this.errorMassege});
+}
+
 class BooksSuccessState extends BooksCubitStates {
   final List<BookEntity> books;
 
