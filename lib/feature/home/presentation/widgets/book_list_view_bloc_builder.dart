@@ -3,7 +3,7 @@ import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 import 'package:books_app/feature/home/presentation/manager/cubit/books_cubit.dart';
 import 'package:books_app/feature/home/presentation/manager/cubit/books_cubit_states.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_list_view_books_items.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +30,6 @@ class _BooksListViewBlocBuilderState extends State<BooksListViewBlocBuilder> {
       },
       builder: (context, state) {
         if (state is BooksSuccessState ||
-            state is BooksPaginationLoadingState ||
             state is BooksPaginationLoadingState) {
           return CustomListViewBooksItems(listHeight: 0.3, books: allBooks);
         } else if (state is BooksFailureState) {

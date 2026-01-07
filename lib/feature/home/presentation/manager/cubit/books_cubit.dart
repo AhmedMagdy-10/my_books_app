@@ -28,13 +28,22 @@ class BooksCubit extends Cubit<BooksCubitStates> {
     }), ((books) => emit(BooksSuccessState(books: books))));
   }
 
-  Future<void> getNewestBooks() async {
-    emit(BooksLoadingState());
-    var results = await getNewestBooksUseCase.call(0);
-    results.fold(
-      ((failure) =>
-          emit(BooksFailureState(errorMassege: failure.errorMessage))),
-      ((books) => emit(BooksSuccessState(books: books))),
-    );
+  Future<void> getNewestBooks({int pageNamber = 0}) async {
+    if (pageNamber == 0) {
+      emit(NewestBooksLoadingState());
+    } else {
+      emit(NewestBooksPaginationLoadingState());
+    }
+
+    var results = await getNewestBooksUseCase.call(pageNamber);
+    results.fold(((failure) {
+      if (pageNamber == 0) {
+        emit(NewestBooksFailureState(errorMassege: failure.errorMessage));
+      } else {
+        emit(
+          NewestBooksPaginationFailureState(errorMassege: failure.errorMessage),
+        );
+      }
+    }), ((books) => emit(NewestBooksSuccessState(books: books))));
   }
 }

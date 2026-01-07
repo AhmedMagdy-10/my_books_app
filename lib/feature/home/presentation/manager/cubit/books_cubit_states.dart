@@ -25,3 +25,25 @@ class BooksFailureState extends BooksCubitStates {
 
   BooksFailureState({required this.errorMassege});
 }
+
+class NewestBooksLoadingState extends BooksCubitStates {}
+
+class NewestBooksPaginationLoadingState extends BooksCubitStates {}
+
+class NewestBooksPaginationFailureState extends BooksCubitStates {
+  final String errorMassege;
+
+  NewestBooksPaginationFailureState({required this.errorMassege});
+}
+
+class NewestBooksSuccessState extends BooksCubitStates {
+  final List<BookEntity> books;
+
+  NewestBooksSuccessState({required this.books});
+}
+
+class NewestBooksFailureState extends BooksCubitStates {
+  final String errorMassege;
+
+  NewestBooksFailureState({required this.errorMassege});
+}
