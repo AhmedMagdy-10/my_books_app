@@ -3,7 +3,15 @@ import 'package:books_app/feature/home/presentation/widgets/custom_book_rating_i
 import 'package:flutter/material.dart';
 
 class BuildBooksRatingAndCategory extends StatelessWidget {
-  const BuildBooksRatingAndCategory({super.key});
+  const BuildBooksRatingAndCategory({
+    super.key,
+    required this.rating,
+    required this.reviews,
+    required this.category,
+  });
+
+  final num rating, reviews;
+  final String category;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +26,7 @@ class BuildBooksRatingAndCategory extends StatelessWidget {
 
               borderRadius: BorderRadius.circular(12),
             ),
-            child: BookRatingItem(rating: 4.8, reviews: 200000),
+            child: BookRatingItem(rating: rating, reviews: reviews),
           ),
           Spacer(),
           Container(
@@ -28,7 +36,7 @@ class BuildBooksRatingAndCategory extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              'Book Category',
+              category,
               style: Styles.textStyle14.copyWith(color: Colors.blueAccent),
             ),
           ),

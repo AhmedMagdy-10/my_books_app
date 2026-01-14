@@ -2,8 +2,8 @@ import 'package:books_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomBookDescription extends StatelessWidget {
-  const CustomBookDescription({super.key});
-
+  const CustomBookDescription({super.key, required this.bookDescription});
+  final String bookDescription;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,7 +20,7 @@ class CustomBookDescription extends StatelessWidget {
           ),
           SizedBox(height: 12),
           Text(
-            'goes here. This is a placeholder for the book description. It provides an overview of the book content, themes, and other relevant information that might interest potential readers.',
+            bookDescription,
             style: Styles.textStyle14.copyWith(
               color: Colors.grey.shade700,
               height: 1.5,

@@ -1,4 +1,5 @@
 import 'package:books_app/core/utils/styles.dart';
+import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 import 'package:books_app/feature/home/presentation/widgets/book_datails_image.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_book_details_description.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_book_details_title.dart';
@@ -8,7 +9,13 @@ import 'package:books_app/feature/home/presentation/widgets/custom_list_view_boo
 import 'package:flutter/material.dart';
 
 class BooksDetailsBottomSheetView extends StatelessWidget {
-  const BooksDetailsBottomSheetView({super.key});
+  const BooksDetailsBottomSheetView({
+    super.key,
+    required this.book,
+    required this.relatedBooks,
+  });
+  final BookEntity book;
+  final List<BookEntity> relatedBooks;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +25,16 @@ class BooksDetailsBottomSheetView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomBooksImage(),
+            CustomBooksImage(bookImage: book.image!),
 
-            BuildBooksRatingAndCategory(),
+            BuildBooksRatingAndCategory(
+              rating: book.rating!,
+              reviews: book.ratingsCount!,
+              category: book.category!,
+            ),
 
-            CustomBooksTitle(),
-            CustomBookDescription(),
+            CustomBooksTitle(title: book.title),
+            CustomBookDescription(bookDescription: book.description!),
             CustomBuyBookButtonAction(),
 
             Padding(
@@ -39,7 +50,10 @@ class BooksDetailsBottomSheetView extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: CustomListViewBooksItems(listHeight: 0.2, books: []),
+              child: CustomListViewBooksItems(
+                listHeight: 0.2,
+                books: relatedBooks,
+              ),
             ),
           ],
         ),

@@ -76,7 +76,10 @@ class _CustomListViewBooksItemsState extends State<CustomListViewBooksItems> {
                 elevation: 0,
                 bounce: true,
 
-                builder: (context) => BooksDetailsBottomSheetView(),
+                builder: (context) => BooksDetailsBottomSheetView(
+                  book: widget.books[index],
+                  relatedBooks: widget.books,
+                ),
               );
             },
             child: ListViewBookItem(image: widget.books[index].image ?? ''),
