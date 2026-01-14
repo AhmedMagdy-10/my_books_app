@@ -1,10 +1,13 @@
 import 'package:books_app/core/utils/styles.dart';
+import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_book_rating_item.dart';
 import 'package:books_app/feature/home/presentation/widgets/custom_list_view_item.dart';
 import 'package:flutter/material.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+  const BestSellerListViewItem({super.key, required this.bookEntity});
+
+  final BookEntity bookEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class BestSellerListViewItem extends StatelessWidget {
       height: 130,
       child: Row(
         children: [
-          ListViewBookItem(image: ''),
+          ListViewBookItem(image: bookEntity.image!),
           SizedBox(width: 30),
           Expanded(
             child: Column(
@@ -20,7 +23,7 @@ class BestSellerListViewItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Harry Potter and the Goblet of Fire',
+                  bookEntity.title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
 
@@ -30,7 +33,7 @@ class BestSellerListViewItem extends StatelessWidget {
                 ),
                 SizedBox(height: 3),
                 Text(
-                  'J.K. Rowling',
+                  bookEntity.category!,
                   style: Styles.textStyle14.copyWith(color: Colors.white54),
                 ),
                 SizedBox(height: 3),
@@ -43,7 +46,10 @@ class BestSellerListViewItem extends StatelessWidget {
                       ),
                     ),
                     Spacer(),
-                    BookRatingItem(),
+                    BookRatingItem(
+                      rating: bookEntity.rating!,
+                      reviews: bookEntity.ratingsCount!,
+                    ),
                   ],
                 ),
               ],

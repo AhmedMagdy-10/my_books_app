@@ -18,7 +18,7 @@ class BuildBooksRatingAndCategory extends StatelessWidget {
 
               borderRadius: BorderRadius.circular(12),
             ),
-            child: BookRatingItem(),
+            child: BookRatingItem(rating: 4.8, reviews: 200000),
           ),
           Spacer(),
           Container(

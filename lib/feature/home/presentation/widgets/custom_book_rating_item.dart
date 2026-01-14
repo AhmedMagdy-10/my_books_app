@@ -2,8 +2,13 @@ import 'package:books_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class BookRatingItem extends StatelessWidget {
-  const BookRatingItem({super.key});
+  const BookRatingItem({
+    super.key,
+    required this.rating,
+    required this.reviews,
+  });
 
+  final num rating, reviews;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -11,7 +16,7 @@ class BookRatingItem extends StatelessWidget {
         Icon(Icons.star, color: Color(0xffFFDD4F), size: 20),
         SizedBox(width: 6),
         Text(
-          '4.8',
+          rating.toString(),
           style: Styles.textStyle16.copyWith(
             color: Colors.amber.shade900,
             fontWeight: FontWeight.bold,
@@ -19,7 +24,10 @@ class BookRatingItem extends StatelessWidget {
         ),
         SizedBox(width: 5),
 
-        Text(' (200k)', style: Styles.textStyle14.copyWith(color: Colors.grey)),
+        Text(
+          ' ($reviews)',
+          style: Styles.textStyle14.copyWith(color: Colors.grey),
+        ),
       ],
     );
   }

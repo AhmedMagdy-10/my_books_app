@@ -37,12 +37,10 @@ class _CustomListViewBooksItemsState extends State<CustomListViewBooksItems> {
     var currentPositions = scrollController.position.pixels;
     var maxScrollLength = scrollController.position.maxScrollExtent;
     if (currentPositions >= 0.7 * maxScrollLength) {
-      if (!isLoading) {
-        isLoading = true;
-        await BlocProvider.of<BooksCubit>(
-          context,
-        ).getMainBooks(pageNamber: nextPage++);
-        isLoading = false;
+      final cubit = context.read<BooksCubit>();
+      if (!cubit.isLoadingMainBooks) {
+        cubit.getMainBooks(pageNamber: nextPage);
+        nextPage++;
       }
     }
   }

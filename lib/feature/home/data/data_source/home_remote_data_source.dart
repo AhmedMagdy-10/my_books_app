@@ -6,14 +6,15 @@ import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNamber = 0});
-  Future<List<BookEntity>> fetchNewBooks();
+  Future<List<BookEntity>> fetchNewBooks({int pageNamber = 0});
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNamber = 0}) async {
     var data = await ApiServices().getData(
-      endpoint: 'Filtering=free-ebooks&q=all&startIndex=${pageNamber * 10}',
+      endpoint:
+          'Filtering=free-ebooks&q=programming&startIndex=${pageNamber * 10}',
     );
 
     List<BookEntity> books = [];
@@ -26,9 +27,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<BookEntity>> fetchNewBooks() async {
+  Future<List<BookEntity>> fetchNewBooks({int pageNamber = 0}) async {
     var data = await ApiServices().getData(
-      endpoint: 'Filtering=free-ebooks&Sorting=newest&q=all',
+      endpoint:
+          'Filtering=free-ebooks&Sorting=newest&q=all&startIndex=${pageNamber * 10}',
     );
     List<BookEntity> newBooks = [];
     for (var item in data['items']) {

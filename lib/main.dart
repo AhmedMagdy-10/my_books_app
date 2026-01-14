@@ -6,6 +6,7 @@ import 'package:books_app/feature/home/domain/UseCase/get_newest_books_use_case.
 import 'package:books_app/feature/home/domain/entities/book_entity.dart';
 import 'package:books_app/feature/home/domain/repo/home_repo_implemention.dart';
 import 'package:books_app/feature/home/presentation/manager/cubit/books_cubit.dart';
+import 'package:books_app/feature/home/presentation/manager/newestBook/newest_book_cubit.dart';
 import 'package:books_app/feature/splashView/presentation/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,19 +27,24 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<BooksCubit>(
-      create: (context) =>
-          BooksCubit(
-              getMainBooksUseCase: GetMainBooksUseCase(
-                homeRepo: getIt.get<HomeRepoImpl>(),
-              ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BooksCubit(
+            getMainBooksUseCase: GetMainBooksUseCase(
+              homeRepo: getIt.get<HomeRepoImpl>(),
+            ),
+          )..getMainBooks(),
+        ),
+        BlocProvider(
+          create: (context) => NewestBooksCubit(
+            getNewestBooksUseCase: GetNewestBooksUseCase(
+              homeRepo: getIt.get<HomeRepoImpl>(),
+            ),
+          )..getNewestBooks(),
+        ),
+      ],
 
-              getNewestBooksUseCase: GetNewestBooksUseCase(
-                homeRepo: getIt.get<HomeRepoImpl>(),
-              ),
-            )
-            ..getMainBooks()
-            ..getNewestBooks(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
